@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>d3 - kaart van Europa</title>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <style type="text/css">  
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+ 
+            //breedte en hoogte kaart
+            var w = 1000;
+            var h = 800;
+ 
+            //projectie kaart
+            var projection = d3.geo.azimuthalEquidistant()
+                                   .translate([w/2, h/2+250])
+                                   .scale([700]);
+ 
+            //pad genereren
+            var path = d3.geo.path()
+                             .projection(projection);
+ 
+            //svg element maken
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+ 
+            //GeoJSON inladen
+            d3.json("europe.json", function(json) {
+ 
+                //data omzetten in paden
+                svg.selectAll("path")
+                   .data(json.features)
+                   .enter()
+                   .append("path")
+                   .attr("d", path)
+                   .attr("transform", "translate(0,300)")
+                   .style("fill", "black");
+ 
+            });
+ 
+        </script>
+    </body>
+</html>
