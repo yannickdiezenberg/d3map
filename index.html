@@ -16,7 +16,7 @@
  
             //projectie kaart
             var projection = d3.geo.azimuthalEquidistant()
-                                   .translate([w/2, h/2+250])
+                                   .translate([w/2, h/2])
                                    .scale([700]);
  
             //pad genereren
@@ -38,8 +38,9 @@
                    .enter()
                    .append("path")
                    .attr("d", path)
-                   .attr("transform", "translate(0,300)")
-                   .style("fill", "black");
+                   .attr("transform", "translate(0,500)")
+                   .style("fill", "#d1d1d1")
+                   .style("stroke","#747884");
  
             });
  
